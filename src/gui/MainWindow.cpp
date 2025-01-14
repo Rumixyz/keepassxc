@@ -943,11 +943,14 @@ void MainWindow::updateMenuActionState()
     m_ui->menuEntryTotp->setEnabled(singleEntrySelected);
     m_ui->menuTags->setEnabled(multiEntrySelected);
     // Handle tear-off tags menu
-    if (m_ui->menuTags->menuAction()->isVisible()) {
+    if (m_ui->menuTags->isTearOffMenuVisible()) {
         if (!databaseUnlocked) {
             m_ui->menuTags->hideTearOffMenu();
         } else {
+            // TODO: Qt 5.15 crashes on macOS when clearing a visible, torn off QMenu
+#ifndef Q_OS_MACOS
             updateSetTagsMenu();
+#endif
         }
     }
     m_ui->actionEntryAutoType->setEnabled(singleEntrySelected && dbWidget->currentEntryHasAutoTypeEnabled());
