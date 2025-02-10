@@ -116,6 +116,13 @@ You can configure unique browser integration behavior for each entry. This allow
 
 After opening the settings you can add any number of additional URLs by clicking the _Add_ button *(2)* and typing the URL in the list to the left *(3)*.
 
+Additional URLs also supports wildcards (with KeePassXC 2.7.10 and later). You can use URLs like:
+----
+https://*.example.com
+https://example.com/*/path
+https://sub.*.example.com/path/*
+----
+
 .Entry browser settings
 image::browser_entry_settings.png[]
 
